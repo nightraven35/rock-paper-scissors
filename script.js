@@ -48,3 +48,24 @@ function playRPSRound(playerSelection, computerSelection) {
         }
     }
 }
+function playRPSGame(){
+    let playerSelection;
+    let roundResult;
+    let playerPoints = 0;
+    for (let i = 0; i < 5; i++) {
+        playerSelection = prompt("Make your selection.");
+        roundResult = playRPSRound(playerSelection, getComputerChoice());
+        console.log(roundResult);
+        if(roundResult.search(/win/) != -1) {
+            playerPoints += 1;
+        } else if (roundResult.search(/draw/) != -1){
+            i -= 1;
+        }
+
+    }
+    if (playerPoints >= 3) {
+        return `You won! ${playerPoints}:${5 - playerPoints}`
+    } else {
+        return `You lost. ${playerPoints}:${5 - playerPoints}`
+    }
+}
