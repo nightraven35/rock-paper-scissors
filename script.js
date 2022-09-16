@@ -21,9 +21,10 @@ function getComputerChoice(){
     }
 }
 
-function playRPSRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toLowerCase()
-    if (playerSelection == computerSelection.toLowerCase()) {
+function playRPSRound(playerSelection) {
+    playerSelection = playerSelection.toLowerCase
+    const computerSelection = getComputerChoice();
+    if (playerSelection == computerSelection.toLowerCase) {
         return "It's a draw"
     } else {
         switch(playerSelection) {
@@ -48,7 +49,7 @@ function playRPSRound(playerSelection, computerSelection) {
         }
     }
 }
-function playRPSGame(){
+/* function playRPSGame(){
     let playerSelection;
     let roundResult;
     let playerPoints = 0;
@@ -68,4 +69,14 @@ function playRPSGame(){
     } else {
         return `You lost. ${playerPoints}:${5 - playerPoints}`
     }
-}
+} */
+
+const btn = document.querySelectorAll("button");
+btn.forEach((button) => {
+    button.addEventListener("click", () => {
+        const resultDiv = document.querySelector("#result");
+        resultDiv.textContent = playRPSRound("scissors");
+        console.log("hello");
+    })
+    console.log("hello")
+})
