@@ -22,9 +22,9 @@ function getComputerChoice(){
 }
 
 function playRPSRound(playerSelection) {
-    playerSelection = playerSelection.toLowerCase
+    playerSelection = arguments[0].toLowerCase();
     const computerSelection = getComputerChoice();
-    if (playerSelection == computerSelection.toLowerCase) {
+    if (playerSelection == computerSelection.toLowerCase()) {
         return "It's a draw"
     } else {
         switch(playerSelection) {
@@ -71,12 +71,44 @@ function playRPSRound(playerSelection) {
     }
 } */
 
-const btn = document.querySelectorAll("button");
+let playerPoints = 0;
+let computerPoints = 0;
+
+const resultDiv = document.querySelector("#result");
+
+const btn = document.querySelectorAll(".btn");
 btn.forEach((button) => {
     button.addEventListener("click", () => {
-        const resultDiv = document.querySelector("#result");
+        
         resultDiv.textContent = playRPSRound("scissors");
-        console.log("hello");
+        
+        if(resultDiv.textContent.search(/win/) != -1) {
+            playerPoints += 1;
+        } else if (resultDiv.textContent.search(/lost/) != -1){
+            computerPoints += 1;
+        }
+
+        const points = document.querySelector("#points");
+        points.textContent = `${playerPoints} | ${computerPoints}`;
+        if(playerPoints + computerPoints == 5) {
+            if (playerPoints > computerPoints) {
+                points.textContent = "YOU WIN!";
+            } else {points.textContent = "YOU LOST."}
+            playerPoints = 0;
+            computerPoints = 0;
+}
+        
     })
-    console.log("hello")
+    
 })
+
+
+const points = document.querySelector("#points");
+points.textContent = `${playerPoints} | ${computerPoints}`;
+if(playerPoints + computerPoints == 5) {
+    if (playerPoints > computerPoints) {
+        points.textContent = "YOU WIN!";
+    } else {points.textContent = "YOU LOST."}
+    playerPoints = 0;
+    computerPoints = 0;
+}
